@@ -1,0 +1,93 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    background-color: #f4f4f4; /* Light background */
+    color: #333; /* Dark text */
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #333; /* Dark header */
+    color: white;
+    padding: 10px 0;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: right;
+}
+
+nav li {
+    display: inline;
+    margin-left: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+.hero {
+    background-color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.upload-area {
+    margin-top: 20px;
+}
+
+.upload-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; /* Blue button */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#fileInput {
+    display: none; /* Hide the default file input */
+}
+
+#fileInfo {
+    margin-top: 10px;
+}
+
+.results {
+    background-color: white;
+    padding: 20px 0;
+}
+
+#output {
+    white-space: pre-wrap; /* Important for preserving line breaks */
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+    overflow-x: auto;
+}
+
+#urlList li a{
+    word-break: break-all;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}
