@@ -56,7 +56,7 @@ function processPDF(file) {
                 const urls = extractURLs(allTextContent);
                 output.textContent = allTextContent; // Display text in <pre> tag, preserving newlines
                 displayUrls(urls, urlList);
-                status.textContent = "";
+                status.textContent = ""; 
             }).catch(error => {
                 status.textContent = "Error processing PDF: " + error;
             });
@@ -80,7 +80,7 @@ function recognizeText(imageURL, output, urlList) {
             const urls = extractURLs(text);
             output.textContent = `Extracted Text:\n${text}`;
             displayUrls(urls, urlList);
-            status.textContent = "";
+            status.textContent = ""; 
         })
         .catch(err => {
             status.textContent = "Error processing image: " + err;
@@ -94,7 +94,7 @@ function processText(file) {
         const urls = extractURLs(textContent);
         output.textContent = `Extracted Text:\n${textContent}`;
         displayUrls(urls, urlList);
-        status.textContent = "";
+        status.textContent = ""; 
     };
     reader.readAsText(file);
 }
