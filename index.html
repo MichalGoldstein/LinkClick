@@ -1,170 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Text and URL Extractor</title>
-  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.0.0/dist/tesseract.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.6.172/build/pdf.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/heic2any@0.3.0/dist/heic2any.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text and URL Extractor</title>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.0.0/dist/tesseract.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.6.172/build/pdf.min.js"></script>
 </head>
 <body>
-  <h1>Upload a File to Extract URLs and Text</h1>
-  <input type="file" id="fileInput" accept=".pdf, .png, .jpg, .jpeg, .txt, .heic">
-  <button id="processButton">Process File</button>
-  <div id="status"></div>
-  <pre id="output"></pre>
-  <ul id="urlList"></ul>
+    <h1>Upload a File to Extract URLs and Text</h1>
+    <input type="file" id="fileInput" accept=".pdf, .png, .jpg, .jpeg, .txt">
+    <button id="processButton">Process File</button>
+    <div id="status"></div>
+    <pre id="output"></pre>
+    <ul id="urlList"></ul>
 
-  <script>
-    document.getElementById("processButton").addEventListener("click", () => {
-      const fileInput = document.getElementById("fileInput");
-      const output = document.getElementById("output");
-      const status = document.getElementById("status");
-      const urlList = document.getElementById("urlList");
-      const file = fileInput.files[0];
+    <script>
+        const processButton = document.getElementById("processButton");
+        const fileInput = document.getElementById("fileInput");
+        const output = document.getElementById("output");
+        const status = document.getElementById("status");
+        const urlList = document.getElementById("urlList");
 
-      if (!file) {
-        output.textContent = "Please upload a file.";
-        return;
-      }
+        processButton.addEventListener("click", () => {
+            const file = fileInput.files[0];
 
-      const fileType = file.type;
-      status.textContent = "Processing, please wait...";
+            if (!file) {
+                output.textContent = "Please upload a file.";
+                return;
+            }
 
-      if (fileType.includes("pdf")) {
-        processPDF(file);
-      } else if (fileType.includes("image") || file.name.toLowerCase().endsWith(".heic")) {
-        processImage(file);
-      } else if (fileType.includes("text")) {
-        processText(file);
-      } else {
-        status.textContent = "Unsupported file type. Please upload a PDF, image (including HEIC), or text file.";
-      }
-    });
+            const fileType = file.type;
+            status.textContent = "Processing, please wait...";
 
-    function processPDF(file) {
-      const output = document.getElementById("output");
-      const urlList = document.getElementById("urlList");
-      const reader = new FileReader();
+            if (fileType.includes("pdf")) {
+                processPDF(file);
+            } else if (fileType.includes("image")) {
+                processImage(file);
+            } else if (fileType.includes("text")) {
+                processText(file);
+            } else {
+                status.textContent = "Unsupported file type.";
+            }
+        });
 
-      reader.onload = function () {
-        const pdfData = new Uint8Array(reader.result);
+        function processPDF(file) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                pdfjsLib.getDocument(new Uint8Array(reader.result)).promise.then(pdf => {
+                    let allTextContent = "";
+                    let promises = [];
 
-        pdfjsLib.getDocument(pdfData).promise.then(pdf => {
-          let textContent = "";
+                    for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                        promises.push(pdf.getPage(pageNum).then(page => {
+                            return page.getTextContent().then(textContent => {
+                                let pageText = "";
+                                let lastY = null; // Keep track of the last Y position
 
-          const promises = [];
-          for (let i = 1; i <= pdf.numPages; i++) {
-            promises.push(
-              pdf.getPage(i).then(page => {
-                return page.getTextContent().then(text => {
-                  text.items.forEach(item => (textContent += item.str + " "));
+                                textContent.items.forEach(item => {
+                                    if (lastY !== null && item.transform[5] > lastY + 10) { // Check for a significant Y difference (line break)
+                                        pageText += "\n"; // Add a newline character
+                                    }
+                                    pageText += item.str + " ";
+                                    lastY = item.transform[5];
+                                });
+                                return pageText;
+                            });
+                        }));
+                    }
+
+                    Promise.all(promises).then(pagesText => {
+                        allTextContent = pagesText.join("\n\n"); // Add paragraph breaks between pages
+                        const urls = extractURLs(allTextContent);
+                        output.textContent = allTextContent; // Display text in <pre> tag, preserving newlines
+                        displayUrls(urls, urlList);
+                        status.textContent = "";
+                    }).catch(error => {
+                        status.textContent = "Error processing PDF: " + error;
+                    });
                 });
-              })
-            );
-          }
+            };
+            reader.readAsArrayBuffer(file);
+        }
 
-          Promise.all(promises).then(() => {
-            const urls = extractURLs(textContent);
-            output.textContent = `Extracted Text:\n${textContent}`;
-            displayUrls(urls, urlList);
-            status.textContent = ""; // Remove the processing message
-          });
-        });
-      };
+        function processImage(file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                status.textContent = "Processing Image...";
+                recognizeText(e.target.result, output, urlList);
+            };
+            reader.readAsDataURL(file);
+        }
 
-      reader.readAsArrayBuffer(file);
-    }
+        function recognizeText(imageURL, output, urlList) {
+            Tesseract.recognize(imageURL, 'eng')
+                .then(({ data: { text } }) => {
+                    const urls = extractURLs(text);
+                    output.textContent = `Extracted Text:\n${text}`;
+                    displayUrls(urls, urlList);
+                    status.textContent = "";
+                })
+                .catch(err => {
+                    status.textContent = "Error processing image: " + err;
+                });
+        }
 
-    function processImage(file) {
-      const output = document.getElementById("output");
-      const urlList = document.getElementById("urlList");
+        function processText(file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const textContent = e.target.result;
+                const urls = extractURLs(textContent);
+                output.textContent = `Extracted Text:\n${textContent}`;
+                displayUrls(urls, urlList);
+                status.textContent = "";
+            };
+            reader.readAsText(file);
+        }
 
-      // Check if the file is HEIC and convert it to PNG
-      if (file.name.toLowerCase().endsWith(".heic")) {
-        status.textContent = "Converting HEIC to PNG...";
-        convertHEIC(file, (imageData) => {
-          status.textContent = "Processing Image...";
-          recognizeText(imageData, output, urlList);
-        });
-      } else {
-        const reader = new FileReader();
-        reader.onload = function () {
-          status.textContent = "Processing Image..."; // Show message while OCR happens
-          recognizeText(reader.result, output, urlList);
-        };
-        reader.readAsDataURL(file);
-      }
-    }
+        function extractURLs(text) {
+            const urlRegex = /\b((https?:\/\/|www\.)?[a-zA-Z0-9.-]+\.(com|net|org|io|edu|gov|co|us|uk|info|biz|me|tech|ai|xyz)(\/[^\s]*)?)/gi;
+            return text.match(urlRegex) || [];
+        }
 
-    function convertHEIC(file, callback) {
-      heic2any({ blob: file, toType: "image/png" }).then((convertedImage) => {
-        const imageURL = URL.createObjectURL(convertedImage);
-        callback(imageURL);
-      }).catch(error => {
-        status.textContent = "Error converting HEIC file.";
-        console.error(error);
-      });
-    }
-
-
-    function recognizeText(imageURL, output, urlList) {
-      Tesseract.recognize(imageURL, "eng").then(({ data: { text } }) => {
-        const urls = extractURLs(text);
-        output.textContent = `Extracted Text:\n${text}`;
-        displayUrls(urls, urlList);
-        status.textContent = ""; // Remove the processing message
-      }).catch(error => {
-        output.textContent = "Error processing the image: " + error.message;
-        status.textContent = ""; // Remove the processing message
-      });
-    }
-
-    function processText(file) {
-      const output = document.getElementById("output");
-      const urlList = document.getElementById("urlList");
-      const reader = new FileReader();
-
-      reader.onload = function () {
-        const textContent = reader.result;
-        const urls = extractURLs(textContent);
-        output.textContent = `Extracted Text:\n${textContent}`;
-        displayUrls(urls, urlList);
-        status.textContent = ""; // Remove the processing message
-      };
-
-      reader.readAsText(file);
-    }
-
-    function extractURLs(text) {
-      const urlRegex = /\b((https?:\/\/|www\.)?[a-zA-Z0-9.-]+\.(com|net|org|io|edu|gov|co|us|uk|info|biz|me|tech|ai|xyz)(\/[^\s]*)?)/gi;
-      return text.match(urlRegex) || [];
-    }
-
-    function displayUrls(urls, urlList) {
-      urlList.innerHTML = ""; // Clear previous results
-      if (urls.length > 0) {
-        urls.forEach(url => {
-          // Ensure URLs missing a prefix are clickable by adding "http://"
-          if (!url.startsWith("http://") && !url.startsWith("https://")) {
-            url = "http://" + url;
-          }
-          const listItem = document.createElement("li");
-          const link = document.createElement("a");
-          link.href = url;
-          link.textContent = url;
-          link.target = "_blank";
-          link.classList.add("url");
-          listItem.appendChild(link);
-          urlList.appendChild(listItem);
-        });
-      } else {
-        const noUrls = document.createElement("li");
-        noUrls.textContent = "No URLs detected.";
-        urlList.appendChild(noUrls);
-      }
-    }
-  </script>
+        function displayUrls(urls, urlList) {
+            urlList.innerHTML = "";
+            if (urls.length > 0) {
+                urls.forEach(url => {
+                    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                        url = "http://" + url;
+                    }
+                    const listItem = document.createElement("li");
+                    const link = document.createElement("a");
+                    link.href = url;
+                    link.textContent = url;
+                    link.target = "_blank";
+                    listItem.appendChild(link);
+                    urlList.appendChild(listItem);
+                });
+            } else {
+                const noUrls = document.createElement("li");
+                noUrls.textContent = "No URLs detected.";
+                urlList.appendChild(noUrls);
+            }
+        }
+    </script>
 </body>
 </html>
