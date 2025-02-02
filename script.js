@@ -7,18 +7,24 @@ const uploadArea = document.querySelector(".upload-area");
 
 uploadArea.addEventListener("dragover", (event) => {
   event.preventDefault();
-  uploadArea.classList.add("dragover"); 
+  uploadArea.classList.add("dragover");
 });
 
 uploadArea.addEventListener("dragleave", () => {
-  uploadArea.classList.remove("dragover"); 
+  uploadArea.classList.remove("dragover");
 });
 
 uploadArea.addEventListener("drop", (event) => {
   event.preventDefault();
-  uploadArea.classList.remove("dragover"); 
-  const file = event.dataTransfer.files[0]; 
-  fileInput.files = file; 
+  uploadArea.classList.remove("dragover");
+
+  // Get the first dropped file
+  const file = event.dataTransfer.files[0];
+
+  // Set the fileInput's value to the dropped file
+  fileInput.files = event.dataTransfer.files; 
+
+  // Simulate a click on the process button
   processButton.click(); 
 });
 
