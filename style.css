@@ -84,6 +84,17 @@ nav a {
     padding: 20px 0;
 }
 
+#saveTextButton {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
 #output {
     white-space: pre-wrap; /* Important for preserving line breaks */
     border: 1px solid #ccc;

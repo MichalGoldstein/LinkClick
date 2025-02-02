@@ -4,6 +4,7 @@ const output = document.getElementById("output");
 const status = document.getElementById("status");
 const urlList = document.getElementById("urlList");
 const uploadArea = document.querySelector(".upload-area");
+const saveTextButton = document.getElementById("saveTextButton");
 
 uploadArea.addEventListener("dragover", (event) => {
   event.preventDefault();
@@ -88,6 +89,19 @@ function processPDF(file) {
     };
     reader.readAsArrayBuffer(file);
 }
+
+saveTextButton.addEventListener("click", () => {
+    const extractedText = output.textContent; 
+    const blob = new Blob([extractedText], { type: 'text/plain' }); 
+    const url = URL.createObjectURL(blob); 
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'extracted_text.txt'; 
+    document.body.appendChild(a); 
+    a.click(); 
+    document.body.removeChild(a); 
+});
 
 function processImage(file) {
     const reader = new FileReader();
