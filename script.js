@@ -6,21 +6,21 @@ const urlList = document.getElementById("urlList");
 const uploadArea = document.querySelector(".upload-area");
 
 uploadArea.addEventListener("dragover", (event) => {
-    event.preventDefault(); // Prevent default browser behavior (file system opening)
-    uploadArea.classList.add("dragover"); // Add visual indication (optional)
-  });
-  
-  uploadArea.addEventListener("dragleave", () => {
-    uploadArea.classList.remove("dragover"); // Remove visual indication (optional)
-  });
-  
-  uploadArea.addEventListener("drop", (event) => {
-    event.preventDefault();
-    uploadArea.classList.remove("dragover"); // Remove visual indication (optional)
-    const file = event.dataTransfer.files[0]; // Get the first dropped file
-    fileInput.files = file; // Set the file input value to the dropped file
-    processButton.click(); // Simulate a click on the process button to trigger processing
-  });
+  event.preventDefault();
+  uploadArea.classList.add("dragover"); 
+});
+
+uploadArea.addEventListener("dragleave", () => {
+  uploadArea.classList.remove("dragover"); 
+});
+
+uploadArea.addEventListener("drop", (event) => {
+  event.preventDefault();
+  uploadArea.classList.remove("dragover"); 
+  const file = event.dataTransfer.files[0]; 
+  fileInput.files = file; 
+  processButton.click(); 
+});
 
 processButton.addEventListener("click", () => {
     const file = fileInput.files[0];

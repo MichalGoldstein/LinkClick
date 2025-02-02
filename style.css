@@ -59,6 +59,18 @@ nav a {
     cursor: pointer;
 }
 
+.upload-area {
+    margin-top: 20px;
+    border: 2px dashed #ccc; /* Add a dashed border for visual cue */
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+}
+
+.upload-area.dragover {
+    border-color: #007bff; /* Change border color on drag-over */
+}
+
 #fileInput {
     display: none; /* Hide the default file input */
 }
