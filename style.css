@@ -22,6 +22,15 @@ header h1 {
     margin: 0;
 }
 
+.logo {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100px; /* Adjust logo size */
+    height: auto;
+    margin-right: 150px; /* Space between logo and title */
+    margin-bottom: 50px;
+}
+
 nav ul {
     list-style: none;
     padding: 0;
