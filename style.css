@@ -13,7 +13,7 @@ body {
 }
 
 header {
-    background-color: #4a6163; 
+    background-color: white; /*#4a6163; */
     color: #f9faf4;
     padding: 10px 20px; /* Added side padding */
     display: flex; 
