@@ -2,7 +2,7 @@ body {
     font-family: 'Voces', sans-serif; /* Apply Voces font */
     margin: 0;
     line-height: 1.6;
-    background-color: #e7dfdf; /* Light background */
+    background-color: white; /*#e7dfdf  Light background */
     color: #4a6163; /* Dark text */
 }
 
