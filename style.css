@@ -3,7 +3,7 @@ body {
     margin: 0;
     line-height: 1.6;
     background-color: #e7dfdf; /* Light background */
-    color: #333; /* Dark text */
+    color: #4a6163; /* Dark text */
 }
 
 .container {
@@ -13,8 +13,8 @@ body {
 }
 
 header {
-    background-color: #2d2fb6; /* Dark header */
-    color: white;
+    background-color: #4a6163; /* Dark header */
+    color: #f9faf4;
     padding: 10px 0;
 }
 
@@ -44,12 +44,12 @@ nav li {
 }
 
 nav a {
-    color: white;
+    color: #f9faf4;
     text-decoration: none;
 }
 
 .hero {
-    background-color: white;
+    background-color: #f9faf4;
     padding: 40px 0;
     text-align: center;
 }
@@ -61,8 +61,8 @@ nav a {
 .upload-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #007bff; /* Blue button */
-    color: white;
+    background-color: #f9a66c; /* Blue button */
+    color: #f9faf4;
     text-decoration: none;
     border-radius: 5px;
     cursor: pointer;
@@ -77,7 +77,7 @@ nav a {
 }
 
 .upload-area.dragover {
-    border-color: #007bff; /* Change border color on drag-over */
+    border-color: #ffc94b; /* Change border color on drag-over */
 }
 
 #fileInput {
@@ -89,15 +89,15 @@ nav a {
 }
 
 .results {
-    background-color: white;
+    background-color: #f9faf4;
     padding: 20px 0;
 }
 
 #saveTextButton {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #4CAF50; /* Green */
-    color: white;
+    background-color: #f17a7e; /* Green */
+    color: #f9faf4;
     text-decoration: none;
     border-radius: 5px;
     cursor: pointer;
@@ -117,8 +117,8 @@ nav a {
 }
 
 footer {
-    background-color: #333;
-    color: white;
+    background-color: #4a6163;
+    color: #f9faf4;
     text-align: center;
     padding: 10px 0;
     margin-top: 20px;
