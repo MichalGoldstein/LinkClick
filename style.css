@@ -13,36 +13,33 @@ body {
 }
 
 header {
-    background-color: #4a6163; /* Dark header */
+    background-color: #4a6163; 
     color: #f9faf4;
-    padding: 10px 0;
-    display: flex; /* Use flexbox for easier layout */
-    justify-content: space-between; /* Align logo to the left */
-    align-items: center; 
-}
-
-header h1 {
-    margin: 0;
+    padding: 10px 20px; /* Added side padding */
+    display: flex; 
+    justify-content: space-between; /* Ensures left and right alignment */
+    align-items: center; /* Aligns items vertically */
 }
 
 .logo {
-    display: inline-block;
-    vertical-align: middle;
-    width: 100px; /* Adjust logo size */
-    max-height: 50px;
-    margin-right: 150px; /* Space between logo and title */
-    margin-bottom: 50px;
+    width: 200px; 
+    max-height: 90px; 
+}
+
+nav {
+    margin-left: auto; /* Push navigation to the right */
 }
 
 nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex; 
+    align-items: center; 
 }
 
 nav li {
-    display: inline;
-    margin-left: 20px;
+    margin-left: 20px; /* Spacing between nav items */
 }
 
 nav a {
