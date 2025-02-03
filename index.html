@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text and URL Extractor</title>
-    <link rel="icon" href="favicon.png" type="image/png">  
+    <link rel="icon" href="favicon.png" type="image/png">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,9 +16,8 @@
 <body>
     <header>
         <div class="container">
-            <img src="logo_basic.png" alt="Logo" class="logo">
-            <h1>Clink Link</h1>
             <nav>
+                <img src="logo_title.png" alt="Logo" class="logo"> 
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">About</a></li>
@@ -28,18 +27,18 @@
         </div>
     </header>
 
-    <main>
-        <section class="hero">
+    <main> 
+        <section class="hero"> 
             <div class="container">
                 <h2>Extract Text & URLs Effortlessly</h2>
                 <p>Upload your PDF, image, or text file (or drag and drop here)</p>
                 <div class="upload-area">
+                    <button id="processButton" class="upload-button">Process File</button>
                     <input type="file" id="fileInput" accept=".pdf, .png, .jpg, .jpeg, .txt">
                     <label for="fileInput" class="upload-button">Choose File</label>
                     <div id="fileInfo"></div>
                 </div>
             </div>
-            <button id="processButton" class="upload-button">Process File</button>
         </section>
 
         <section class="results">

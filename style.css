@@ -16,6 +16,9 @@ header {
     background-color: #4a6163; /* Dark header */
     color: #f9faf4;
     padding: 10px 0;
+    display: flex; /* Use flexbox for easier layout */
+    justify-content: space-between; /* Align logo to the left */
+    align-items: center; 
 }
 
 header h1 {
@@ -26,7 +29,7 @@ header h1 {
     display: inline-block;
     vertical-align: middle;
     width: 100px; /* Adjust logo size */
-    height: auto;
+    max-height: 50px;
     margin-right: 150px; /* Space between logo and title */
     margin-bottom: 50px;
 }
@@ -35,7 +38,6 @@ nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    text-align: right;
 }
 
 nav li {
