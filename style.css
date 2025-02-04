@@ -3,7 +3,7 @@ body {
     margin: 0;
     line-height: 1.6;
     background-color: #e7dfdf ;
-    color: #4a6163; /* Dark text */
+    color: #eaf0f1; /* #4a6163 */
 }
 
 .container {
@@ -13,38 +13,41 @@ body {
 }
 
 header {
-    background-color: #4a6163; /*#4a6163; */
+    background-color: #4a6163;
     color: #f9faf4;
-    padding: 10px 20px; /* Added side padding */
-    display: flex; 
-    justify-content: space-between; /* Ensures left and right alignment */
-    align-items: center; /* Aligns items vertically */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.logo {
-    width: 200px; 
-    max-height: 90px; 
-}
-
-nav {
-    margin-left: auto; /* Push navigation to the right */
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex; 
-    align-items: center; 
+    display: flex;
+    gap: 20px; /* Adds spacing between links */
 }
 
 nav li {
-    margin-left: 20px; /* Spacing between nav items */
+    display: inline;
 }
 
 nav a {
     color: #f9faf4;
     text-decoration: none;
+}
+
+.logo {
+    width: 200px;
+    max-height: 90px;
 }
 
 .hero {
@@ -60,7 +63,7 @@ nav a {
 .upload-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #f9a66c; /* Blue button */
+    background-color: #f9a66c; 
     color: #f9faf4;
     text-decoration: none;
     border-radius: 5px;
