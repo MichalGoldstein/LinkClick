@@ -2,7 +2,7 @@ body {
     font-family: 'Voces', sans-serif; /* Apply Voces font */
     margin: 0;
     line-height: 1.6;
-    background-color: white; /*#e7dfdf  Light background */
+    background-color: #e7dfdf ;
     color: #4a6163; /* Dark text */
 }
 
@@ -13,7 +13,7 @@ body {
 }
 
 header {
-    background-color: white; /*#4a6163; */
+    background-color: #4a6163; /*#4a6163; */
     color: #f9faf4;
     padding: 10px 20px; /* Added side padding */
     display: flex; 
