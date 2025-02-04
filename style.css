@@ -2,8 +2,8 @@ body {
     font-family: 'Voces', sans-serif; /* Apply Voces font */
     margin: 0;
     line-height: 1.6;
-    background-color: #cb1818 ; /* #e7dfdf */
-    color: #4a6163; /* #4a6163 */
+    background-color: #e7dfdf ;
+    color: #4a6163; /* Dark text */
 }
 
 .container {
@@ -13,41 +13,38 @@ body {
 }
 
 header {
-    background-color: #4a6163;
+    background-color: #4a6163; /*#4a6163; */
     color: #f9faf4;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 10px 20px; /* Added side padding */
+    display: flex; 
+    justify-content: space-between; /* Ensures left and right alignment */
+    align-items: center; /* Aligns items vertically */
 }
 
-.container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.logo {
+    width: 200px; 
+    max-height: 90px; 
+}
+
+nav {
+    margin-left: auto; /* Push navigation to the right */
 }
 
 nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    gap: 20px; /* Adds spacing between links */
+    display: flex; 
+    align-items: center; 
 }
 
 nav li {
-    display: inline;
+    margin-left: 20px; /* Spacing between nav items */
 }
 
 nav a {
     color: #f9faf4;
     text-decoration: none;
-}
-
-.logo {
-    width: 200px;
-    max-height: 90px;
 }
 
 .hero {
@@ -63,7 +60,7 @@ nav a {
 .upload-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #f9a66c; 
+    background-color: #f9a66c; /* Blue button */
     color: #f9faf4;
     text-decoration: none;
     border-radius: 5px;
