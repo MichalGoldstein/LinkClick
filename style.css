@@ -2,8 +2,8 @@ body {
     font-family: 'Voces', sans-serif; /* Apply Voces font */
     margin: 0;
     line-height: 1.6;
-    background-color: #e7dfdf ;
-    color: #eaf0f1; /* #4a6163 */
+    background-color: #cb1818 ; /* #e7dfdf */
+    color: #4a6163; /* #4a6163 */
 }
 
 .container {
