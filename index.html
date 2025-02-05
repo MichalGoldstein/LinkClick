@@ -14,33 +14,27 @@
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.0.0/dist/tesseract.min.js"></script> 
 </head>
 <body>
-      <header>
-        <div class="container">
-            <nav> 
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-            <img src="logo_title.png" alt="Logo" class="logo"> 
-        </div>
-    </header>
-
-
+      <nav> 
+          <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+          </ul>
+      </nav>
+            
     <main> 
-        <section class="hero"> 
-            <div class="container">
-                <h2>Extract Text & URLs Effortlessly</h2>
-                <p>Upload your PDF, image, or screenshot file (or drag and drop here)</p>
-                <div class="upload-area">
-                    <input type="file" id="fileInput" accept=".pdf, .png, .jpg, .jpeg, .txt">
-                    <label for="fileInput" class="upload-button">Upload File</label>
-                    <div id="fileInfo"></div>
-                </div>
+      <div class="container">
+       <img style="float: left; margin: 0px 15px 15px 0px;" src="logo_title.png" alt="Logo" class="logo"/> 
+            <h2>Extract Text & URLs Effortlessly</h2>
+            <p>Upload your PDF, image, or screenshot file (or drag and drop here)</p>
+            <div class="upload-area">
+                <input type="file" id="fileInput" accept=".pdf, .png, .jpg, .jpeg, .txt">
+                <label for="fileInput" class="upload-button">Upload File</label>
+                <p id="fileInfo"></p> 
+                <div id="fileInfo"></div>
             </div>
-            <button id="processButton" class="upload-button">Process File</button>
-        </section>
+        </div>
+        <button id="processButton" class="upload-button">Process File</button>
 
         <section class="results">
             <div class="container">

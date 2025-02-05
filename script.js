@@ -29,6 +29,18 @@ uploadArea.addEventListener("drop", (event) => {
   processButton.click(); 
 });
 
+document.getElementById('fileInput').addEventListener('change', function(event) {
+    const file = event.target.files[0]; // Get the uploaded file
+    const fileInfo = document.getElementById('fileInfo');
+
+    if (file) {
+        fileInfo.innerHTML = `<img src="upload.png" alt="Upload Icon" style="width: 30px; vertical-align: middle; margin-right: 10px;">
+                              ${file.name}`; // Display file name with icon
+    } else {
+        fileInfo.innerHTML = ''; // Clear if no file is selected
+    }
+});
+
 processButton.addEventListener("click", () => {
     const file = fileInput.files[0];
 

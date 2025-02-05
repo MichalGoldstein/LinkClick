@@ -6,12 +6,6 @@ body {
     color: #4a6163; /* Dark text */
 }
 
-.container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
 header {
     background-color: #4a6163; /*#4a6163; */
     color: #f9faf4;
@@ -21,9 +15,19 @@ header {
     align-items: center; /* Aligns items vertically */
 }
 
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
 .logo {
-    width: 200px; 
-    max-height: 90px; 
+    display: inline-block;
+    vertical-align: middle;
+    width: 100px; /* Adjust logo size */
+    height: auto;
+    margin-right: 150px; /* Space between logo and title */
+    margin-bottom: 50px;
 }
 
 nav {
