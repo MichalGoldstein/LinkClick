@@ -7,7 +7,7 @@ body {
 }
 
 header {
-    background-color: #3cd8e6; /*#4a6163; */
+    background-color: #4a6163; /*#4a6163; */
     color: #f9faf4;
     padding: 10px 20px; /* Added side padding */
     display: flex; 
@@ -120,7 +120,7 @@ nav a {
 }
 
 footer {
-    background-color: #4a6163;
+    background-color: #2ac0ce; /*#4a6163; */
     color: #f9faf4;
     text-align: center;
     padding: 10px 0;
