@@ -25,8 +25,15 @@ uploadArea.addEventListener("drop", (event) => {
   // Set the fileInput's value to the dropped file
   fileInput.files = event.dataTransfer.files; 
 
-  // Simulate a click on the process button
-  processButton.click(); 
+  // Display the uploaded file name
+  const fileInfo = document.getElementById("fileInfo");
+  if (file) {
+    fileInfo.innerHTML = `<img src="upload.png" alt="Upload Icon" style="width: 30px; vertical-align: middle; margin-right: 10px;">
+                          ${file.name}`; // Display file name with icon
+} else {
+    fileInfo.innerHTML = ''; // Clear if no file is selected
+}
+
 });
 
 document.getElementById('fileInput').addEventListener('change', function(event) {
@@ -118,7 +125,7 @@ saveTextButton.addEventListener("click", () => {
 function processImage(file) {
     const reader = new FileReader();
     reader.onload = function (e) {
-        status.textContent = "Processing Image...";
+        status.textContent = "Processing File...";
         recognizeText(e.target.result, output, urlList);
     };
     reader.readAsDataURL(file);
