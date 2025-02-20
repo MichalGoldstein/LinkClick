@@ -31,7 +31,10 @@ header {
 }
 
 nav {
-    margin-left: auto; /* Push navigation to the right */
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #4a6163;
+    padding: 10px 0;
 }
 
 nav ul {
@@ -47,8 +50,16 @@ nav li {
 }
 
 nav a {
-    color: #f9faf4;
+    margin: 0 10px;
+    color: white;
     text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: #ccc;
 }
 
 .hero {
@@ -64,7 +75,7 @@ nav a {
 .upload-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #f9a66c; /* Blue button */
+    background-color: #f9a66c;
     color: #f9faf4;
     text-decoration: none;
     border-radius: 5px;
@@ -81,6 +92,21 @@ nav a {
 
 .upload-area.dragover {
     border-color: #ffc94b; /* Change border color on drag-over */
+}
+
+#processButton {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f9a66c;
+    color: #f9faf4;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
 }
 
 #fileInput {
