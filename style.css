@@ -17,8 +17,14 @@ header {
 
 .container {
     max-width: 960px;
-    margin: 0 auto;
+    margin: auto;
     padding: 20px;
+}
+
+.container.about {
+    max-width: 800px; /* Adjust width for better readability */
+    margin: 0 auto; /* Center the content */
+    padding: 0 40px; /* Add more padding on the sides */
 }
 
 .logo {
