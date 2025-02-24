@@ -158,3 +158,18 @@ footer {
     padding: 10px 0;
     margin-top: 20px;
 }
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+    }
+
+    .footer-links a {
+    color: #f9faf4; 
+    text-decoration: none;
+    margin: 0 5px;
+    }
+
+    .footer-links a:hover {
+    text-decoration: underline;
+    }
